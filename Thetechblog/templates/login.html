@@ -1,0 +1,13 @@
+{% extends 'Base.html'%}
+{%block content%}
+<h1 style="text-align:center; justify-content:center;padding-top: 5%;">LOG IN</h1>
+
+<form style="text-align: center;font-weight: bolder;text-decoration: solid;text-rendering: auto;padding: 17%;"methods="POST">
+    {{form.hidden_tag()}}
+    <br>
+    {{form.email.label}}<br>{{form.email}}<br><br>
+    {{form.password.label}}<br>{{form.password}}<br><br>
+    {{form.submit()}}
+</form>
+
+{% endblock%}

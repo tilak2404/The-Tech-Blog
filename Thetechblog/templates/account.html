@@ -1,0 +1,22 @@
+{% extends 'Base.html'%}
+{%block content%}
+<div class="jumbotron">
+    <div style="display: grid; place-items: center;text-align: center; justify-content: center;align-items: center;">
+        <h1> Welcome {{current_user.username}}</h1>
+        <img src="{{url_for('static',filename)='profile_pics/'+current_user.profile_image}}" alt="">
+    </div>
+</div>
+<div class="container">
+    <form style="text-align: center;font-weight: bolder;text-decoration: solid;text-rendering: auto;padding: 17%;"methods="POST">
+    
+        {{form.hidden_tag()}}
+    <br><br>
+    <div class="form-group">
+    {{form.email.label(class='form-group')}}<br><br>{{form.email(class='form-control')}}<br><br></div><div class="form-group">
+    {{form.picture.label(class='form-group')}}<br><br>{{form.picture(class='form-control')}}<br><br></div><div class="form-group"></div>
+    {{form.username.label(class='form-group')}}<br><br>{{form.username(class='form-control')}}<br><br></div><div class="form-group">
+    {{form.submit(class='btn btn primary')}}</div>
+</form>
+</div>
+
+{% endblock%}
