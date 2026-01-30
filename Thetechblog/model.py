@@ -8,7 +8,7 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__='users'
     id=db.Column(db.Integer,primary_key=True)
     profile_image=db.Column(db.String(20),nullable=False,default='default_profile.jpg')
@@ -25,12 +25,16 @@ class User(db.Model):
     def check_password(self,password):
         return check_password_hash(self.password_hash,password)
     
+    @property
+    def is_active(self):
+        return True
+
     def __repr__(self):
         return f" Username : {self.username}"
 
 class Blogpost(db.Model):
-    
-    users=db.relationship(User)
+
+    users=db.relationship(User, overlaps="author,posts")
 
     id=db.Column(db.Integer,primary_key=True)
     user_id=db.Column(db.Integer,db.ForeignKey('users.id'),nullable=False)
