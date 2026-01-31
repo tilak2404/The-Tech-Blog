@@ -1,22 +1,133 @@
 {% extends 'base.html'%}
 {%block content%}
-<div class="jumbotron">
-    <div style="display: grid; place-items: center;text-align: center; justify-content: center;align-items: center;">
-        <h1> Welcome {{current_user.username}}</h1>
-        <img src="{{ url_for('static', filename='profile_pics/' + current_user.profile_image) }}" alt="" style="width: 200px; height: 200px; object-fit: cover;">
-    </div>
-</div>
-<div class="container">
-    <form method="POST" action="{{ url_for('users.account') }}" enctype="multipart/form-data"  style="text-align: center;font-weight: bolder;text-decoration: solid;text-rendering: auto;padding-left: 25%;padding-right: 25%" >
-    
-        {{form.hidden_tag()}}
-    <br><br>
-    <div class="form-group">
-    {{form.email.label(class='form-group')}}<br><br>{{form.email(class='form-control')}}<br><br></div><div class="form-group">
-    {{form.picture.label(class='form-group')}}<br><br>{{form.picture(class='form-control')}}<br><br></div><div class="form-group">
-    {{form.username.label(class='form-group')}}<br><br>{{form.username(class='form-control')}}<br><br></div><div class="form-group">
-    {{form.submit(class='btn btn primary')}}</div>
-</form>
-</div>
+<section
+  style="
+    min-height: calc(95vh - 50px);
+    background:
+      radial-gradient(900px circle at top, rgba(59,130,246,0.08), transparent 45%),
+      linear-gradient(180deg, #f8fafc, #ffffff);
+    padding: 24px 16px;
+    display: flex;
+    justify-content: center;
+  "
+>
+  <div
+    style="
+      width: 100%;
+      max-width: 760px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(8px);
+      border-radius: 24px;
+      padding: 16px 36px 28px;
+      box-shadow:
+        0 40px 80px rgba(15,23,42,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+    "
+  >
+    <!-- HEADER -->
+    <div style="text-align:center; margin-bottom: 24px;">
+      <h1
+        style="
+          text-transform: capitalize;
+          margin: 0;
+          font-size: 36px;
+          font-weight: 900;
+          letter-spacing: -0.02em;
+          color: #0f172a;
+        "
+      >
+        Welcome, {{current_user.username}} <span style="font-size:28px;">👋</span>
+      </h1>
 
+      <p
+        style="
+          margin-top: 10px;
+          font-size: 15px;
+          color: #64748b;
+        "
+      >
+        Your personal TechTalk profile
+      </p>
+    </div>
+
+    <!-- AVATAR -->
+    <div style="display:flex; justify-content:center; margin-bottom: 16px;">
+      <div
+        style="
+          padding: 6px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #3b82f6, #9333ea);
+          box-shadow: 0 20px 40px rgba(59,130,246,0.45);
+        "
+      >
+        <img
+          src="{{ url_for('static', filename='profile_pics/' + current_user.profile_image) }}"
+          alt="Profile"
+          style="
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #ffffff;
+          "
+        />
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <form method="POST" action="{{ url_for('users.account') }}" enctype="multipart/form-data">
+      {{form.hidden_tag()}}
+      <!-- SECTION -->
+      <div style="margin-bottom: 16px;">
+        <div
+          style="
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #6366f1;
+            margin-bottom: 12px;
+          "
+        >
+          Account details
+        </div>
+
+        <!-- Email -->
+        <div style="margin-bottom: 12px;">
+          <label style="font-size: 13px; font-weight: 600; color:#334155;">
+            Email
+          </label>
+          {{form.email(style="width: 100%; margin-top: 8px; padding: 8px 14px; border-radius: 14px; border: 1px solid #e2e8f0; background: #f8fafc; font-size: 15px; color: #475569;", readonly=True)}}
+        </div>
+
+        <!-- Username -->
+        <div>
+          <label style="font-size: 13px; font-weight: 600; color:#334155;">
+            Username
+          </label>
+          {{form.username(style="width: 100%; margin-top: 8px; padding: 8px 14px; border-radius: 14px; border: 1px solid #e2e8f0; font-size: 15px; color: #0f172a;")}}
+        </div>
+      </div>
+
+      <!-- UPLOAD -->
+      <div style="margin-bottom: 24px;">
+        <label
+          style="
+            display:block;
+            font-size: 13px;
+            font-weight: 600;
+            color:#334155;
+            margin-bottom: 10px;
+          "
+        >
+          Profile picture
+        </label>
+        {{form.picture(style="width: 100%; padding: 10px; border-radius: 14px; border: 1px dashed #c7d2fe; background: #f8fafc; font-size: 14px;")}}
+      </div>
+
+      <!-- ACTION -->
+      {{form.submit(style="width: 100%; padding: 12px; border-radius: 16px; border: none; background: linear-gradient(135deg, #ef4444, #dc2626); color: #ffffff; font-size: 17px; font-weight: 800; cursor: pointer; box-shadow: 0 24px 48px rgba(239,68,68,0.45), inset 0 1px 0 rgba(255,255,255,0.25);")}}
+    </form>
+  </div>
+</section>
 {% endblock%}

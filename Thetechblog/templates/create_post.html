@@ -1,0 +1,89 @@
+{% extends "base.html"%}
+{% block content%}
+<section
+  style="
+    min-height: calc(100vh - 70px);
+    background:
+      radial-gradient(900px circle at top, rgba(59,130,246,0.08), transparent 45%),
+      #f8fafc;
+    padding: 48px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  "
+>
+  <div
+    style="
+      width: 100%;
+      max-width: 800px;
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 32px 28px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    "
+  >
+    <!-- Header -->
+    <div style="margin-bottom: 32px;">
+      <h1
+        style="
+          margin: 0;
+          font-size: 32px;
+          font-weight: 800;
+          color: #0f172a;
+          letter-spacing: -0.02em;
+        "
+      >
+        Create a new post
+      </h1>
+
+      <p
+        style="
+          margin-top: 8px;
+          font-size: 15px;
+          color: #64748b;
+        "
+      >
+        Share knowledge, ideas, or insights with the TechTalk community.
+      </p>
+    </div>
+
+    <!-- Form -->
+    <form method="POST">
+      {{form.hidden_tag()}}
+      <!-- Title -->
+      <div style="margin-bottom: 24px;">
+        {{form.title.label(text="Post title", style="display: block; font-size: 13px; font-weight: 600; color: #64748b; margin-bottom: 8px;")}}
+        {{form.title(placeholder="Write a clear, meaningful title...", style="width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid #d1d5db; font-size: 16px; color: #1f2937; outline: none;")}}
+      </div>
+
+      <!-- Content -->
+      <div style="margin-bottom: 36px;">
+        {{form.text.label(text="Content", style="display: block; font-size: 13px; font-weight: 600; color: #64748b; margin-bottom: 8px;")}}
+        {{form.text(placeholder="Write your post here...", rows="8", style="width: 100%; padding: 12px 14px; border-radius: 14px; border: 1px solid #d1d5db; font-size: 15px; line-height: 1.7; color: #1f2937; resize: vertical; outline: none;")}}
+      </div>
+
+      <!-- Actions -->
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 16px;
+          flex-wrap: wrap;
+        "
+      >
+        <span
+          style="
+            font-size: 13px;
+            color: #94a3b8;
+          "
+        >
+          Make it clear. Make it useful.
+        </span>
+
+        {{form.submit(text="Publish Post", style="padding: 12px 24px; border-radius: 14px; border: none; background: linear-gradient(135deg, #1e40af, #1e3a8a); color: #ffffff; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 12px 24px rgba(30,64,175,0.35);")}}
+      </div>
+    </form>
+  </div>
+</section>
+{%endblock%}

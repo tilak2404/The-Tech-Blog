@@ -1,7 +1,99 @@
 {% extends "base.html"%}
 {% block content%}
-<div class="jumbotron">
-    <h1> Info about the TechTalk</h1>
-    <p > its pretty good so wait for it</p>
-</div>
+<section
+  style="
+    min-height: calc(100vh - 70px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(700px circle at top, rgba(99,102,241,0.12), transparent 40%),
+      #ffffff;
+    padding: 64px 20px;
+  "
+>
+  <div
+    style="
+      max-width: 860px;
+      text-align: center;
+    "
+  >
+    <!-- Eyebrow -->
+    <div
+      style="
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #6366f1;
+        margin-bottom: 16px;
+      "
+    >
+      About
+    </div>
+
+    <!-- Title -->
+    <h1
+      style="
+        font-size: clamp(42px, 6vw, 56px);
+        font-weight: 800;
+        margin: 0;
+        color: #1f2937;
+        letter-spacing: -0.02em;
+      "
+    >
+      TechTalk
+    </h1>
+
+    <!-- Hero line -->
+    <p
+      style="
+        margin-top: 16px;
+        font-size: clamp(20px, 3vw, 24px);
+        font-weight: 600;
+        color: #374151;
+      "
+    >
+      Where real technology gets explained.
+    </p>
+
+    <!-- Description -->
+    <p
+      style="
+        margin: 32px auto 0;
+        max-width: 720px;
+        font-size: 17px;
+        line-height: 1.8;
+        color: #6b7280;
+      "
+    >
+      TechTalk is built for engineers, builders, and curious minds who care about
+      how systems actually work. We break down software, AI, and engineering
+      concepts into clear, practical insights—without the noise.
+    </p>
+
+    <!-- Divider -->
+    <div
+      style="
+        width: 64px;
+        height: 3px;
+        background: linear-gradient(90deg, #6366f1, #8b5cf6);
+        margin: 48px auto;
+        border-radius: 999px;
+      "
+    ></div>
+
+    <!-- Tagline -->
+    <p
+      style="
+        font-size: 16px;
+        font-weight: 600;
+        color: #9ca3af;
+        letter-spacing: 0.02em;
+      "
+    >
+      Less hype. <span style="color:#4f46e5;">More engineering.</span>
+    </p>
+  </div>
+</section>
 {%endblock%}

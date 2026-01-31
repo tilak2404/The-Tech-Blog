@@ -1,6 +1,43 @@
 {% extends "base.html"%}
 {% block content%}
-<div class="jumbotron">
-    <h1> The Tech Blog</h1>
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2.5rem 0.8rem; text-align: center; margin-bottom: 1.5rem;">
+    <h1 style="font-size: 2.5rem; font-weight: 700; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">The Tech Blog</h1>
+    <p style="font-size: 1.2rem; margin: 0.5rem 0 0 0; opacity: 0.9;">Discover the latest in technology and innovation</p>
 </div>
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 0.8rem;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+{%for post in blog_posts.items%}
+<div style="background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden; transition: all 0.3s ease; border: 1px solid #e1e5e9;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 25px rgba(0, 0, 0, 0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.1)';">
+  <div style="padding: 1.2rem;">
+    <h5 style="font-size: 1.25rem; font-weight: 600; margin: 0 0 0.75rem 0; line-height: 1.4;"><a href="{{url_for('blogposts.blog_post',blog_post_id=post.id)}}" style="color: #1a202c; text-decoration: none; transition: color 0.2s ease;" onmouseover="this.style.color='#3182ce';" onmouseout="this.style.color='#1a202c';">{{post.title}}</a></h5>
+    <div style="display: flex; align-items: center; margin-bottom: 0.75rem;">
+        <a href="{{url_for('users.user_posts',username=post.author.username)}}" style="text-transform: capitalize;color: #718096; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s ease;" onmouseover="this.style.color='#4a5568';" onmouseout="this.style.color='#718096';">Written By: {{post.author.username}}</a>
+    </div>
+    <p style="color: #a0aec0; font-size: 0.85rem; margin: 0 0 1rem 0; font-weight: 400;">Published on: {{post.date.strftime('%B %d, %Y')}}</p>
+    <a href="{{url_for('blogposts.blog_post',blog_post_id=post.id)}}" style="display: inline-block; background: #e2e8f0; color: #4a5568; padding: 0.4rem 0.8rem; border-radius: 6px; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: all 0.2s ease; border: 1px solid #cbd5e0;" onmouseover="this.style.background='#cbd5e0'; this.style.color='#2d3748';" onmouseout="this.style.background='#e2e8f0'; this.style.color='#4a5568';">Read Blog Post</a>
+  </div>
+</div>
+{%endfor%}
+    </div>
+    <nav aria-label="Page navigation" style="display: flex; justify-content: center; margin-top: 2rem;">
+        <ul style="display: flex; list-style: none; margin: 0; padding: 0; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); overflow: hidden;">
+            {% for page_num in blog_posts.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2) %}
+                {% if blog_posts.page == page_num %}
+            <li style="margin: 0;"><a href="{{url_for('core.index',page=page_num)}}" style="display: block; padding: 0.6rem 0.8rem; background: #3182ce; color: white; text-decoration: none; font-weight: 500; border-right: 1px solid #2c5282;">{{page_num}}</a></li>
+                {% else %}
+            <li style="margin: 0;"><a href="{{url_for('core.index',page=page_num)}}" style="display: block; padding: 0.6rem 0.8rem; color: #4a5568; text-decoration: none; font-weight: 500; transition: all 0.2s ease; border-right: 1px solid #e2e8f0;" onmouseover="this.style.background='#f7fafc'; this.style.color='#2d3748';" onmouseout="this.style.background='white'; this.style.color='#4a5568';">{{page_num}}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </nav>
+</div>
+
+<style>
+@media (max-width: 768px) {
+    .container { padding: 0 0.5rem; }
+    .card { margin-bottom: 1rem; }
+    h1 { font-size: 2rem; }
+}
+</style>
+
 {%endblock%}

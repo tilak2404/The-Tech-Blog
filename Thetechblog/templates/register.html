@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
 {%block content%}
-<h1 style="text-align:center; justify-content:center;padding-top: 5%;">REGISTER</h1>
-<form action="{{ url_for('users.register') }}" style="text-align: center;font-weight: bolder;text-decoration: solid;text-rendering: auto;padding: 15%;" method="POST">
+<h1 style="text-align:center; justify-content:center;padding-top: 4%;">REGISTER</h1>
+<form action="{{ url_for('users.register') }}" style="text-align: center;font-weight: bolder;text-decoration: solid;text-rendering: auto;padding: 12%;" method="POST">
     {{form.hidden_tag()}}
     <br>
     {{form.email.label}}<br>{{form.email}}<br><br>
