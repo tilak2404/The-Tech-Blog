@@ -7,7 +7,7 @@
     </div>
 </div>
 <div class="container">
-    <form action="{{ url_for('users.account') }}" style="text-align: center;font-weight: bolder;text-decoration: solid;text-rendering: auto;padding: 17%;" method="POST">
+    <form method="POST" action="{{ url_for('users.account') }}" enctype="multipart/form-data"  style="text-align: center;font-weight: bolder;text-decoration: solid;text-rendering: auto;padding-left: 25%;padding-right: 25%" >
     
         {{form.hidden_tag()}}
     <br><br>

@@ -1,0 +1,3 @@
+- [x] Fix form validators in UpdateUserForm to allow current user's email and username
+- [x] Fix path joining and add error handling in picture_handler.py
+- [x] Test profile picture update functionality (app import error prevents direct testing)
