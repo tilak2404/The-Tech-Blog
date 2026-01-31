@@ -3,7 +3,7 @@
 <div class="jumbotron">
     <div style="display: grid; place-items: center;text-align: center; justify-content: center;align-items: center;">
         <h1> Welcome {{current_user.username}}</h1>
-        <img src="{{ url_for('static', filename='profile_pics/' + current_user.profile_image) }}" alt="">
+        <img src="{{ url_for('static', filename='profile_pics/' + current_user.profile_image) }}" alt="" style="width: 200px; height: 200px; object-fit: cover;">
     </div>
 </div>
 <div class="container">
