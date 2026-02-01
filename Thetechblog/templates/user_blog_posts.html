@@ -1,31 +1,128 @@
-{% extends 'Base.html'%}
+{% extends 'base.html'%}
 {%block content%}
-<div class="container">
-    <div class="jumbotron">
-        <div style="justify-content: center;place-items: center; align-items: center">
-            <h1>Welcome to the page for {{user.username}}</h1>
-            <br>
-            <img class="center"src="{{url_for('static',filename='profile_pics/'+current_user.profile_image)}}" style="width: 200px; height: 200px; object-fit: cover;margin-left:40%" >
-        
-        </div>
-    </div>
-<br><br><hr>
+<section
+  style="
+    padding: 48px 20px 32px;
+    text-align: center;
+  "
+>
+  <img
+    src="{{url_for('static',filename='profile_pics/'+user.profile_image)}}"
+    alt="Author"
+    style="
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 12px 30px rgba(15,23,42,0.2);
+      margin-bottom: 16px;
+    "
+  />
+
+  <h1
+    style="
+      margin: 0;
+      font-size: 28px;
+      font-weight: 800;
+      color: #0f172a;
+    "
+  >
+    {{user.username}}
+  </h1>
+
+  <p
+    style="
+      margin-top: 6px;
+      font-size: 14px;
+      color: #64748b;
+    "
+  >
+    Posts by this author
+  </p>
+</section>
+
 {% for post in blog_posts.items %}
-<h2><a style="font-size:large;"href="{{url_for('blogposts.blog_post',blog_post_id=post.id)}}">{{post.title}}</a></h2>
-Written By : <a style=" font-weight: bold;text-transform: capitalize"href="{{url_for('users.user_posts',username=post.author.username)}}">{{post.author.username}}</a><br><br>
-<p class="text-muted">Published on : {{post.date.strftime("%Y-%m-%d")}}</p>
-<p>{{post.text}}</p>
-<br><hr>
-{% endfor %}
+<div
+  style="
+    max-width: 900px;
+    margin: 0 auto 28px;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 28px 32px;
+    box-shadow: 0 14px 32px rgba(15,23,42,0.08);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  "
+  onmouseover="
+    this.style.boxShadow='0 30px 70px rgba(59,130,246,0.35)';
+    this.style.transform='translateY(-4px)';
+  "
+  onmouseout="
+    this.style.boxShadow='0 14px 32px rgba(15,23,42,0.08)';
+    this.style.transform='translateY(0)';
+  "
+>
+  <!-- Post title -->
+  <a
+    href="{{url_for('blogposts.blog_post',blog_post_id=post.id)}}"
+    style="
+      font-size: 20px;
+      font-weight: 800;
+      color: #0f172a;
+      text-decoration: none;
+    "
+  >
+    {{post.title}}
+  </a>
+
+  <!-- Meta -->
+  <div
+    style="
+      margin-top: 8px;
+      font-size: 13px;
+      color: #64748b;
+    "
+  >
+    Published on {{post.date.strftime('%Y-%m-%d')}}
+  </div>
+
+  <!-- Excerpt -->
+  <p
+    style="
+      margin-top: 14px;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #334155;
+    "
+  >
+    {{post.text[:200]}}...
+  </p>
+
+  <!-- Action -->
+  <a
+    href="{{url_for('blogposts.blog_post',blog_post_id=post.id)}}"
+    style="
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #2563eb;
+      text-decoration: none;
+    "
+  >
+    Read full post →
+  </a>
 </div>
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
+{% endfor %}
+
+<nav aria-label="Page navigation example" style="text-align: center; margin-top: 40px;">
+  <ul style="display: inline-flex; list-style: none; margin: 0; padding: 0; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); overflow: hidden;">
     {% for page_num in blog_posts.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2) %}
         {% if blog_posts.page == page_num %}
-    <li class="page-item disabled"><a class="page-link" href="{{url_for('users.user_posts',username=user.username,page=page_num)}}">{{page_num}}</a></li>
+    <li style="margin: 0;"><a href="{{url_for('users.user_posts',username=user.username,page=page_num)}}" style="display: block; padding: 0.6rem 0.8rem; background: #3182ce; color: white; text-decoration: none; font-weight: 500; border-right: 1px solid #2c5282;">{{page_num}}</a></li>
         {% else %}
-    <li class="page-item"><a class="page-link" href="{{url_for('users.user_posts',username=user.username,page=page_num)}}">{{page_num}}</a></li>
+    <li style="margin: 0;"><a href="{{url_for('users.user_posts',username=user.username,page=page_num)}}" style="display: block; padding: 0.6rem 0.8rem; color: #4a5568; text-decoration: none; font-weight: 500; transition: all 0.2s ease; border-right: 1px solid #e2e8f0;" onmouseover="this.style.background='#f7fafc'; this.style.color='#2d3748';" onmouseout="this.style.background='white'; this.style.color='#4a5568';">{{page_num}}</a></li>
     {% endif %}
     {% endfor %}
-</ul></nav>
+  </ul>
+</nav>
 {% endblock%}
