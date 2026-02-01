@@ -1,13 +1,115 @@
 {% extends 'base.html'%}
 {%block content%}
-<h1 style="text-align:center; justify-content:center;padding-top: 5%;">LOG IN</h1>
+<section
+  style="
+    min-height: calc(100vh - 64px);
+    background:
+      radial-gradient(900px circle at top, rgba(59,130,246,0.08), transparent 45%),
+      linear-gradient(180deg, #f8fafc, #ffffff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+  "
+>
+  <div
+    style="
+      width: 100%;
+      max-width: 400px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(6px);
+      border-radius: 22px;
+      padding: 44px 36px 48px;
+      box-shadow:
+        0 30px 60px rgba(15,23,42,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+      text-align: center;
+    "
+  >
+    <!-- HEADER -->
+    <h1
+      style="
+        margin: 0;
+        font-size: 32px;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        color: #0f172a;
+      "
+    >
+      Welcome back 👋
+    </h1>
 
-<form style="text-align: center;font-weight: bolder;text-decoration: solid;text-rendering: auto;padding: 17%;" method="POST">
-    {{form.hidden_tag()}}
-    <br>
-    {{form.email.label}}<br>{{form.email}}<br><br>
-    {{form.password.label}}<br>{{form.password}}<br><br>
-    {{form.submit()}}
-</form>
+    <p
+      style="
+        margin-top: 10px;
+        font-size: 15px;
+        color: #64748b;
+      "
+    >
+      Log in to continue to TechTalk
+    </p>
 
+    <!-- FORM -->
+    <form action="{{ url_for('users.login') }}" method="POST" style="margin-top: 36px; text-align: left;">
+      {{form.hidden_tag()}}
+      <!-- Email -->
+      <div style="margin-bottom: 20px;">
+        <label
+          style="
+            font-size: 13px;
+            font-weight: 600;
+            color: #334155;
+          "
+        >
+          {{form.email.label}}
+        </label>
+        <div style="margin-top: 8px;">
+          {{form.email(style="width: 100%; padding: 14px 16px; border-radius: 14px; border: 1px solid #e2e8f0; font-size: 15px; color: #0f172a;")}}
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div style="margin-bottom: 28px;">
+        <label
+          style="
+            font-size: 13px;
+            font-weight: 600;
+            color: #334155;
+          "
+        >
+          {{form.password.label}}
+        </label>
+        <div style="margin-top: 8px;">
+          {{form.password(style="width: 100%; padding: 14px 16px; border-radius: 14px; border: 1px solid #e2e8f0; font-size: 15px;")}}
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div>
+        {{form.submit(style="width: 100%; padding: 15px; border-radius: 16px; border: none; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 20px 40px rgba(37,99,235,0.45), inset 0 1px 0 rgba(255,255,255,0.25);")}}
+      </div>
+    </form>
+
+    <!-- FOOTER -->
+    <p
+      style="
+        margin-top: 24px;
+        font-size: 14px;
+        color: #64748b;
+      "
+    >
+      Don’t have an account?
+      <a
+        href="{{ url_for('users.register') }}"
+        style="
+          color: #2563eb;
+          font-weight: 700;
+          text-decoration: none;
+        "
+      >
+        Create one
+      </a>
+    </p>
+  </div>
+</section>
 {% endblock%}
